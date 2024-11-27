@@ -34,6 +34,16 @@ function App() {
 
     React.useEffect(() => {
         if (data) {
+            // Clear existing charts
+            const charts = Chart.getChart('dailyChart');
+            if (charts) charts.destroy();
+            const profileCharts = Chart.getChart('profileChart');
+            if (profileCharts) profileCharts.destroy();
+            const hourlyCharts = Chart.getChart('hourlyChart');
+            if (hourlyCharts) hourlyCharts.destroy();
+            const ticketCharts = Chart.getChart('ticketDistributionChart');
+            if (ticketCharts) ticketCharts.destroy();
+
             // Daily Sales Chart
             const dailyCtx = document.getElementById('dailyChart');
             new Chart(dailyCtx, {
@@ -56,13 +66,38 @@ function App() {
                 data: {
                     labels: data.profile_stats.map(d => d.Profile),
                     datasets: [{
-                        data: data.profile_stats.map(d => d.sum),
+                        data: data.profile_stats.map(d => d.total_sales),
                         backgroundColor: [
                             'rgb(255, 99, 132)',
                             'rgb(54, 162, 235)',
                             'rgb(255, 205, 86)'
                         ]
                     }]
+                }
+            });
+
+            // Ticket Distribution Chart
+            const ticketCtx = document.getElementById('ticketDistributionChart');
+            new Chart(ticketCtx, {
+                type: 'bar',
+                data: {
+                    labels: data.profile_stats.map(d => d.Profile),
+                    datasets: [{
+                        label: 'Nombre de Tickets Vendus',
+                        data: data.profile_stats.map(d => d.tickets_sold),
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
                 }
             });
 
@@ -125,8 +160,55 @@ function App() {
                     </div>
                     
                     <div className="bg-white p-6 rounded-lg shadow">
-                        <h2 className="text-xl font-semibold mb-4">Distribution Horaire</h2>
+                        <h2 className="text-xl font-semibold mb-4">Ventes Selon les Heures</h2>
                         <canvas id="hourlyChart"></canvas>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-lg shadow">
+                        <h2 className="text-xl font-semibold mb-4">Distribution des Tickets</h2>
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full divide-y divide-gray-200">
+                                <thead className="bg-gray-50">
+                                    <tr>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Forfait
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Tickets Vendus
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Pourcentage
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Total Ventes
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody className="bg-white divide-y divide-gray-200">
+                                    {data.profile_stats.map((profile, index) => (
+                                        <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                {profile.Profile}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {profile.tickets_sold}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {profile.percentage}%
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {profile.total_sales.toLocaleString()} XOF
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-lg shadow">
+                        <h2 className="text-xl font-semibold mb-4">Distribution des Tickets par Forfait</h2>
+                        <canvas id="ticketDistributionChart"></canvas>
                     </div>
 
                     <div className="bg-white p-6 rounded-lg shadow">
@@ -135,13 +217,13 @@ function App() {
                             <div>
                                 <h3 className="font-medium">Total des ventes</h3>
                                 <p className="text-2xl font-bold text-green-600">
-                                    {data.daily_sales.reduce((acc, curr) => acc + curr.total, 0).toLocaleString()} XOF
+                                    {data.profile_stats.reduce((acc, curr) => acc + curr.total_sales, 0).toLocaleString()} XOF
                                 </p>
                             </div>
                             <div>
-                                <h3 className="font-medium">Nombre total de transactions</h3>
+                                <h3 className="font-medium">Nombre total de tickets vendus</h3>
                                 <p className="text-2xl font-bold text-blue-600">
-                                    {data.daily_sales.reduce((acc, curr) => acc + curr.transactions, 0)}
+                                    {data.profile_stats.reduce((acc, curr) => acc + curr.tickets_sold, 0)}
                                 </p>
                             </div>
                         </div>
