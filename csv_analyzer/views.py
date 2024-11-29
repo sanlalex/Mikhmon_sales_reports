@@ -1,21 +1,24 @@
-from flask import Flask, request, jsonify, render_template
-from flask_cors import CORS
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 import pandas as pd
 import numpy as np
 from datetime import datetime
 import os
+from django.conf import settings
+import logging
 
-app = Flask(__name__)
-CORS(app)
-
-UPLOAD_FOLDER = 'uploads'
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
+logger = logging.getLogger(__name__)
 
 def process_csv(file_path):
-    df = pd.read_csv(file_path, skiprows=1)  # Skip the first row with total
-    df['Date'] = pd.to_datetime(df['Date'] + ' ' + df['Time'])
-    return df
+    try:
+        df = pd.read_csv(file_path, skiprows=1)
+        df['Date'] = pd.to_datetime(df['Date'] + ' ' + df['Time'])
+        return df
+    except Exception as e:
+        logger.error(f"Error processing CSV: {str(e)}")
+        raise
 
 def convert_to_native_types(obj):
     if isinstance(obj, (np.int64, np.int32, np.int16, np.int8)):
@@ -46,28 +49,56 @@ def apply_filters(df, start_date=None, end_date=None, profiles=None, min_price=N
         
     return filtered_df
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+def index(request):
+    return render(request, 'index.html')
 
-@app.route('/upload', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        return jsonify({'error': 'No file part'}), 400
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({'error': 'No selected file'}), 400
-    if file and file.filename.endswith('.csv'):
-        filepath = os.path.join(UPLOAD_FOLDER, file.filename)
-        file.save(filepath)
+@csrf_exempt
+@require_http_methods(["POST"])
+def upload_file(request):
+    logger.info(f"Received {request.method} request to /upload/")
+    logger.info(f"Request headers: {dict(request.headers)}")
+    
+    if 'file' not in request.FILES:
+        logger.warning("No file in request")
+        return JsonResponse({'error': 'No file part'}, status=400)
+    
+    file = request.FILES['file']
+    if file.name == '':
+        logger.warning("Empty filename")
+        return JsonResponse({'error': 'No selected file'}, status=400)
+    
+    if not file.name.endswith('.csv'):
+        logger.warning(f"Invalid file type: {file.name}")
+        return JsonResponse({'error': 'Only CSV files are allowed'}, status=400)
+
+    try:
+        # Create uploads directory if it doesn't exist
+        if not os.path.exists(settings.MEDIA_ROOT):
+            logger.info(f"Creating upload directory: {settings.MEDIA_ROOT}")
+            os.makedirs(settings.MEDIA_ROOT)
+
+        # Save file
+        filepath = os.path.join(settings.MEDIA_ROOT, file.name)
+        logger.info(f"Saving file to: {filepath}")
+        
+        with open(filepath, 'wb+') as destination:
+            for chunk in file.chunks():
+                destination.write(chunk)
+
+        logger.info("File saved successfully")
+
+        # Process CSV
         df = process_csv(filepath)
+        logger.info("CSV processed successfully")
         
         # Get filter parameters
-        start_date = request.form.get('start_date')
-        end_date = request.form.get('end_date')
-        profiles = request.form.getlist('profiles[]')
-        min_price = request.form.get('min_price')
-        max_price = request.form.get('max_price')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        profiles = request.POST.getlist('profiles[]')
+        min_price = request.POST.get('min_price')
+        max_price = request.POST.get('max_price')
+        
+        logger.info(f"Filter parameters: start_date={start_date}, end_date={end_date}, profiles={profiles}, min_price={min_price}, max_price={max_price}")
         
         # Apply filters
         filtered_df = apply_filters(df, start_date, end_date, profiles, min_price, max_price)
@@ -95,15 +126,13 @@ def upload_file():
         # Profile distribution
         profile_stats = filtered_df.groupby('Profile').agg({
             'Price': ['sum', 'count'],
-            'Username': 'count'  # Count unique tickets
+            'Username': 'count'
         }).reset_index()
         profile_stats.columns = ['Profile', 'total_sales', 'total_transactions', 'tickets_sold']
         
-        # Calculate percentages for tickets distribution
         total_tickets = profile_stats['tickets_sold'].sum()
         profile_stats['percentage'] = (profile_stats['tickets_sold'] / total_tickets * 100).round(2)
         
-        # Convert all numeric columns to native Python types
         profile_stats = profile_stats.astype({
             'total_sales': float,
             'total_transactions': int,
@@ -119,22 +148,22 @@ def upload_file():
         })
         
         response_data = {
+            'profiles': all_profiles,
+            'price_range': price_range,
+            'date_range': date_range,
             'daily_sales': daily_sales.to_dict('records'),
             'weekly_sales': weekly_sales.to_dict('records'),
             'profile_stats': profile_stats.to_dict('records'),
-            'hourly_stats': hourly_stats.to_dict('records'),
-            'filter_options': {
-                'profiles': all_profiles,
-                'price_range': price_range,
-                'date_range': date_range
-            }
+            'hourly_stats': hourly_stats.to_dict('records')
         }
         
-        # Convert all numpy types to native Python types
-        response_data = convert_to_native_types(response_data)
+        logger.info("Data processed successfully")
+        logger.info("Sending response")
         
-        return jsonify(response_data)
-    return jsonify({'error': 'Invalid file format'}), 400
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+        response = JsonResponse(convert_to_native_types(response_data))
+        response["Access-Control-Allow-Origin"] = "http://localhost:8000"
+        response["Access-Control-Allow-Credentials"] = "true"
+        return response
+    except Exception as e:
+        logger.error(f"Error processing request: {str(e)}")
+        return JsonResponse({'error': str(e)}, status=500)

@@ -14,31 +14,23 @@ function App() {
         setError(null);
 
         try {
-            console.log('Sending request to server...');
             const response = await fetch('/upload/', {
                 method: 'POST',
                 body: formData,
+                credentials: 'same-origin',
                 headers: {
                     'Accept': 'application/json',
                 },
-                credentials: 'same-origin',
             });
 
-            console.log('Response status:', response.status);
-            const contentType = response.headers.get('content-type');
-            console.log('Content type:', contentType);
-
             if (!response.ok) {
-                const errorText = await response.text();
-                console.error('Server response:', errorText);
-                throw new Error(errorText || 'Erreur lors du téléchargement du fichier');
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Erreur lors du téléchargement du fichier');
             }
 
             const result = await response.json();
-            console.log('Data received:', result);
             setData(result);
         } catch (err) {
-            console.error('Error details:', err);
             setError(err.message);
         } finally {
             setLoading(false);

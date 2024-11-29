@@ -1,0 +1,77 @@
+INFO 2024-11-29 21:02:48,508 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:02:48,645 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:02:49,116 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:02:49,212 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:03:28,830 basehttp "GET / HTTP/1.1" 200 738
+INFO 2024-11-29 21:04:06,200 basehttp "GET / HTTP/1.1" 200 738
+INFO 2024-11-29 21:05:13,212 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\settings.py changed, reloading.
+INFO 2024-11-29 21:05:13,300 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\settings.py changed, reloading.
+INFO 2024-11-29 21:05:14,867 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:05:14,871 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:05:15,661 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:05:15,662 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:05:25,512 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\urls.py changed, reloading.
+INFO 2024-11-29 21:05:25,524 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\urls.py changed, reloading.
+INFO 2024-11-29 21:05:27,483 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:05:27,520 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:05:28,051 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:05:28,084 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:05:38,962 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\urls.py changed, reloading.
+INFO 2024-11-29 21:05:39,880 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:05:39,966 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\urls.py changed, reloading.
+INFO 2024-11-29 21:05:40,249 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:05:41,412 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:05:41,945 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:05:47,077 basehttp "GET / HTTP/1.1" 200 738
+INFO 2024-11-29 21:06:07,864 basehttp "GET /admin HTTP/1.1" 301 0
+INFO 2024-11-29 21:06:07,913 basehttp "GET /admin/ HTTP/1.1" 302 0
+INFO 2024-11-29 21:06:08,255 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4256
+INFO 2024-11-29 21:06:09,312 basehttp "GET /static/admin/css/base.css HTTP/1.1" 200 21310
+INFO 2024-11-29 21:06:09,394 basehttp "GET /static/admin/css/responsive.css HTTP/1.1" 200 18559
+INFO 2024-11-29 21:06:09,431 basehttp "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+INFO 2024-11-29 21:06:09,450 basehttp "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2024-11-29 21:06:09,450 basehttp "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+INFO 2024-11-29 21:06:10,086 basehttp "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+INFO 2024-11-29 21:06:10,110 basehttp "GET /static/admin/css/login.css HTTP/1.1" 200 958
+INFO 2024-11-29 21:06:12,759 basehttp "GET / HTTP/1.1" 200 738
+INFO 2024-11-29 21:07:11,685 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\settings.py changed, reloading.
+INFO 2024-11-29 21:07:11,902 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\settings.py changed, reloading.
+INFO 2024-11-29 21:07:12,916 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:07:13,164 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:07:13,329 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:07:13,561 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:07:31,351 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\views.py changed, reloading.
+INFO 2024-11-29 21:07:31,504 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\views.py changed, reloading.
+INFO 2024-11-29 21:07:32,561 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:07:32,837 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:09:42,594 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\views.py changed, reloading.
+INFO 2024-11-29 21:09:42,985 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\views.py changed, reloading.
+INFO 2024-11-29 21:09:43,767 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:09:44,192 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:09:44,194 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:09:44,621 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:09:54,193 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\settings.py changed, reloading.
+INFO 2024-11-29 21:09:55,018 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\settings.py changed, reloading.
+INFO 2024-11-29 21:09:55,611 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:09:55,983 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:09:56,477 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:09:56,946 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:10:07,685 basehttp "GET / HTTP/1.1" 200 738
+INFO 2024-11-29 21:11:32,813 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\views.py changed, reloading.
+INFO 2024-11-29 21:11:33,468 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\views.py changed, reloading.
+INFO 2024-11-29 21:11:34,282 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:11:34,874 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:11:35,048 autoreload Watching for file changes with StatReloader
+INFO 2024-11-29 21:11:35,583 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-29 21:11:48,341 basehttp "GET / HTTP/1.1" 200 738
+INFO 2024-11-29 21:12:15,483 basehttp "GET / HTTP/1.1" 200 738
+INFO 2024-11-29 21:12:17,594 basehttp "GET /static/js/app.js HTTP/1.1" 200 11121
+INFO 2024-11-29 21:12:31,883 views Received POST request to /upload/
+INFO 2024-11-29 21:12:31,884 views Request headers: {'Content-Length': '309919', 'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundaryxl4EBAQkdJAeIAON', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'Accept': 'application/json', 'Sec-Ch-Ua': '"Brave";v="131", "Chromium";v="131", "Not_A Brand";v="24"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Gpc': '1', 'Origin': 'http://127.0.0.1:8000', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://127.0.0.1:8000/', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'fr-FR,fr;q=0.9'}
+INFO 2024-11-29 21:12:31,899 views Saving file to: C:\Users\Alex\Downloads\csv\uploads\report-mikhmon-112024.csv
+INFO 2024-11-29 21:12:31,903 views File saved successfully
+INFO 2024-11-29 21:12:32,477 views CSV processed successfully
+INFO 2024-11-29 21:12:32,477 views Filter parameters: start_date=None, end_date=None, profiles=[], min_price=None, max_price=None
+INFO 2024-11-29 21:12:32,572 views Data processed successfully
+INFO 2024-11-29 21:12:32,572 views Sending response
+INFO 2024-11-29 21:12:32,574 basehttp "POST /upload/ HTTP/1.1" 200 3260
