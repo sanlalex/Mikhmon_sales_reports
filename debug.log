@@ -97,3 +97,4 @@ INFO 2024-11-30 07:51:04,213 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer
 INFO 2024-11-30 07:51:05,184 autoreload Watching for file changes with StatReloader
 INFO 2024-11-30 07:51:05,575 utils NumExpr defaulting to 8 threads.
 INFO 2024-11-30 07:51:54,828 basehttp "GET / HTTP/1.1" 200 2482
+INFO 2024-11-30 07:52:07,691 basehttp "POST /upload/ HTTP/1.1" 200 18319
