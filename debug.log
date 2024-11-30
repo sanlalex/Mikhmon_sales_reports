@@ -90,3 +90,10 @@ INFO 2024-11-30 07:42:53,213 views Filter parameters: start_date=None, end_date=
 INFO 2024-11-30 07:42:53,328 views Data processed successfully
 INFO 2024-11-30 07:42:53,329 views Sending response
 INFO 2024-11-30 07:42:53,330 basehttp "POST /upload/ HTTP/1.1" 200 3260
+INFO 2024-11-30 07:50:50,301 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\views.py changed, reloading.
+INFO 2024-11-30 07:50:52,072 autoreload Watching for file changes with StatReloader
+INFO 2024-11-30 07:50:52,595 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-30 07:51:04,213 autoreload C:\Users\Alex\Downloads\csv\csv_analyzer\urls.py changed, reloading.
+INFO 2024-11-30 07:51:05,184 autoreload Watching for file changes with StatReloader
+INFO 2024-11-30 07:51:05,575 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-30 07:51:54,828 basehttp "GET / HTTP/1.1" 200 2482
