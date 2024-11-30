@@ -75,3 +75,18 @@ INFO 2024-11-29 21:12:32,477 views Filter parameters: start_date=None, end_date=
 INFO 2024-11-29 21:12:32,572 views Data processed successfully
 INFO 2024-11-29 21:12:32,572 views Sending response
 INFO 2024-11-29 21:12:32,574 basehttp "POST /upload/ HTTP/1.1" 200 3260
+INFO 2024-11-30 07:42:13,917 autoreload Watching for file changes with StatReloader
+INFO 2024-11-30 07:42:17,898 utils NumExpr defaulting to 8 threads.
+INFO 2024-11-30 07:42:44,980 basehttp "GET / HTTP/1.1" 200 738
+INFO 2024-11-30 07:42:46,813 basehttp "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2024-11-30 07:42:47,040 basehttp "GET /static/js/app.js HTTP/1.1" 200 11121
+WARNING 2024-11-30 07:42:47,108 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1893
+INFO 2024-11-30 07:42:53,079 views Received POST request to /upload/
+INFO 2024-11-30 07:42:53,080 views Request headers: {'Content-Length': '309919', 'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary06cVXROqDbfQWwEc', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'Accept': 'application/json', 'Sec-Ch-Ua': '"Brave";v="131", "Chromium";v="131", "Not_A Brand";v="24"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Gpc': '1', 'Origin': 'http://127.0.0.1:8000', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://127.0.0.1:8000/', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'csrftoken=rlJVuQS55q9h9h1JkXlK1M2n0Rah15Yr'}
+INFO 2024-11-30 07:42:53,085 views Saving file to: C:\Users\Alex\Downloads\csv\uploads\report-mikhmon-112024.csv
+INFO 2024-11-30 07:42:53,087 views File saved successfully
+INFO 2024-11-30 07:42:53,212 views CSV processed successfully
+INFO 2024-11-30 07:42:53,213 views Filter parameters: start_date=None, end_date=None, profiles=[], min_price=None, max_price=None
+INFO 2024-11-30 07:42:53,328 views Data processed successfully
+INFO 2024-11-30 07:42:53,329 views Sending response
+INFO 2024-11-30 07:42:53,330 basehttp "POST /upload/ HTTP/1.1" 200 3260
