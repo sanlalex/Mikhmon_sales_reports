@@ -1,7 +1,10 @@
 FROM python:3.11-slim
 
 # Installation des dépendances système nécessaires
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl && \
+    rm -rf /var/lib/apt/lists/* && \
+    which curl
 
 WORKDIR /app
 
