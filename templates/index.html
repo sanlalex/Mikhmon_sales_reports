@@ -3,15 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analyse des Ventes</title>
+    <title>SUNREPORTS - Analyse des Ventes</title>
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <div id="root"></div>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 text-center">Rapport de Ventes Mikhmon</h1>
+            <div class="mt-4 max-w-2xl mx-auto">
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-blue-800">Instructions pour le téléchargement</h3>
+                            <div class="mt-2 text-sm text-blue-700">
+                                <p>1. Exportez vos données de vente depuis Mikhmon au format CSV</p>
+                                <p>2. Cliquez sur "Choisir un fichier" ci-dessous</p>
+                                <p>3. Sélectionnez votre fichier CSV exporté</p>
+                                <p>4. Les graphiques et analyses seront générés automatiquement</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div id="root" class="bg-white rounded-lg shadow-lg p-6"></div>
+        </main>
+    </div>
+    <footer class="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-8 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-6">
+                <div>
+                    <h2 class="text-xl font-semibold text-blue-400 mb-2">SUNREPORTS</h2>
+                    <p class="text-gray-400 text-sm">Solutions professionnelles pour la gestion de vos services</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <a href="https://sunvpn.dev/" class="group p-4 bg-gray-800 bg-opacity-50 rounded-lg hover:bg-opacity-75 transition-all duration-300">
+                        <h3 class="text-blue-400 font-medium group-hover:text-blue-300 transition-colors">SUNVPN</h3>
+                        <p class="text-sm text-gray-400 mt-2">Comptes VPN et Mikhmon</p>
+                    </a>
+                    
+                    <a href="https://sunpaypro.com/" class="group p-4 bg-gray-800 bg-opacity-50 rounded-lg hover:bg-opacity-75 transition-all duration-300">
+                        <h3 class="text-blue-400 font-medium group-hover:text-blue-300 transition-colors">SUNPAY PRO</h3>
+                        <p class="text-sm text-gray-400 mt-2">Acceptez des paiements par mobile Money pour vos wifizones</p>
+                    </a>
+                </div>
+
+                <div class="pt-4 border-t border-gray-700">
+                    <p class="text-xs text-gray-500"> 2025 Tous droits réservés</p>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script type="text/babel" src="/static/js/app.js"></script>
+    <div id="container-383140358393e2f8d3b7e28c71e8552b"></div>
 </body>
 </html>
