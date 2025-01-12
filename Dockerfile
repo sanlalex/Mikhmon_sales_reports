@@ -1,23 +1,29 @@
-FROM python:3.11-alpine
+FROM --platform=linux/arm64/v8 python:3.11-slim
 
-# Set up environment variables for Python
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+# Installation des dépendances système nécessaires
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl && \
+    rm -rf /var/lib/apt/lists/* && \
+    which curl
 
-# Create and set the working directory
 WORKDIR /app
 
-# Copy only the requirements file first to leverage Docker caching
+# Copy requirements first to leverage Docker cache
 COPY requirements.txt .
-
-# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire application code
+# Copy the rest of the application
 COPY . .
 
-# Expose the port your application will run on
-EXPOSE 8080
+# Create uploads directory
+RUN mkdir -p uploads
 
-# Specify the command to run on container start
-CMD ["python", "src/app.py"]
+# Expose the port the app runs on
+EXPOSE 5000
+
+# Configure healthcheck
+HEALTHCHECK --interval=30s --timeout=3s --start-period=30s --retries=3 \
+  CMD curl -f http://localhost:5000/ || exit 1
+
+# Command to run the application
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
