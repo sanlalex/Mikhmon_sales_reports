@@ -88,6 +88,14 @@ def upload_file():
         daily_sales = daily_sales.rename(columns={'sum': 'total', 'count': 'transactions'})
         daily_sales['Date'] = daily_sales['Date'].apply(lambda x: x.strftime('%Y-%m-%d'))
         
+        # Statistiques globales des ventes journalières
+        sales_stats = {
+            'moyenne_ventes_jour': float(daily_sales['total'].mean()),
+            'min_ventes_jour': float(daily_sales['total'].min()),
+            'max_ventes_jour': float(daily_sales['total'].max()),
+            'total_ventes': float(daily_sales['total'].sum())
+        }
+        
         # Weekly sales
         filtered_df['Week'] = filtered_df['Date'].dt.strftime('%Y-W%W')
         weekly_sales = filtered_df.groupby(['Week'])['Price'].agg(['sum', 'count']).reset_index()
@@ -119,15 +127,16 @@ def upload_file():
         })
         
         response_data = {
-            'daily_sales': daily_sales.to_dict('records'),
-            'weekly_sales': weekly_sales.to_dict('records'),
-            'profile_stats': profile_stats.to_dict('records'),
-            'hourly_stats': hourly_stats.to_dict('records'),
+            'daily_sales': convert_to_native_types(daily_sales.to_dict('records')),
+            'weekly_sales': convert_to_native_types(weekly_sales.to_dict('records')),
+            'profile_stats': convert_to_native_types(profile_stats.to_dict('records')),
+            'hourly_stats': convert_to_native_types(hourly_stats.to_dict('records')),
             'filter_options': {
                 'profiles': all_profiles,
                 'price_range': price_range,
                 'date_range': date_range
-            }
+            },
+            'sales_stats': sales_stats
         }
         
         # Convert all numpy types to native Python types

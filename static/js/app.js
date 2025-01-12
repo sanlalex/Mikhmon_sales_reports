@@ -25,6 +25,14 @@ function App() {
 
             const result = await response.json();
             setData(result);
+            
+            // Mettre à jour les statistiques de vente
+            if (result.sales_stats) {
+                document.getElementById('totalSales').textContent = result.sales_stats.total_ventes.toLocaleString('fr-FR') + ' XOF';
+                document.getElementById('avgSales').textContent = result.sales_stats.moyenne_ventes_jour.toLocaleString('fr-FR') + ' XOF';
+                document.getElementById('minSales').textContent = result.sales_stats.min_ventes_jour.toLocaleString('fr-FR') + ' XOF';
+                document.getElementById('maxSales').textContent = result.sales_stats.max_ventes_jour.toLocaleString('fr-FR') + ' XOF';
+            }
         } catch (err) {
             setError(err.message);
         } finally {
@@ -160,7 +168,7 @@ function App() {
                     </div>
                     
                     <div className="bg-white p-6 rounded-lg shadow">
-                        <h2 className="text-xl font-semibold mb-4">Ventes Selon les Heures</h2>
+                        <h2 className="text-xl font-semibold mb-4">Ventes Selon les Heures de la journée</h2>
                         <canvas id="hourlyChart"></canvas>
                     </div>
 
@@ -216,15 +224,25 @@ function App() {
                         <div className="space-y-4">
                             <div>
                                 <h3 className="font-medium">Total des ventes</h3>
-                                <p className="text-2xl font-bold text-green-600">
-                                    {data.profile_stats.reduce((acc, curr) => acc + curr.total_sales, 0).toLocaleString()} XOF
-                                </p>
+                                <p id="totalSales" className="text-2xl font-bold text-green-600"></p>
                             </div>
                             <div>
                                 <h3 className="font-medium">Nombre total de tickets vendus</h3>
                                 <p className="text-2xl font-bold text-blue-600">
                                     {data.profile_stats.reduce((acc, curr) => acc + curr.tickets_sold, 0)}
                                 </p>
+                            </div>
+                            <div>
+                                <h3 className="font-medium">Moyenne journalière</h3>
+                                <p id="avgSales" className="text-2xl font-bold text-orange-600"></p>
+                            </div>
+                            <div>
+                                <h3 className="font-medium">Minimum journalier</h3>
+                                <p id="minSales" className="text-2xl font-bold text-red-600"></p>
+                            </div>
+                            <div>
+                                <h3 className="font-medium">Maximum journalier</h3>
+                                <p id="maxSales" className="text-2xl font-bold text-purple-600"></p>
                             </div>
                         </div>
                     </div>
